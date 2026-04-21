@@ -15,7 +15,7 @@ MODEL_DB = {
 
 # --- 界面展示 ---
 st.set_page_config(page_title="国补计算器Pro", page_icon="🧧")
-st.title("🧧 国补+店补计算器 (85折新政版)")
+st.title("🧧 国补+店补计算器 ")
 
 # 1. 机型选择
 selected_model = st.selectbox("第一步：选择或搜索机型", list(MODEL_DB.keys()))
