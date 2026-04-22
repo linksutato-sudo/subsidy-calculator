@@ -6,15 +6,15 @@ MAX_SUBSIDY = 1500.0  # 补贴上限
 
 # 升级后的数据库：[价格, 是否国补, CPU, 内存, 硬盘, 显卡, 分辨率, 刷新率]
 MODEL_DB = {
-    "拯救者 Y7000P 2025 (Ultra 7 255HX)": {
+    "联想 拯救者 Y7000P 2025 (Ultra 7 255HX)": {
         "price": 10999.0, "status": True,
         "specs": ["Ultra 7 255HX", "16G", "1T", "RTX 5060", "2.5K", "165Hz"]
     },
-    "拯救者 Y9000P 2025 (Ultra 7)": {
+    "联想 拯救者 Y9000P 2025 (Ultra 7)": {
         "price": 12999.0, "status": True,
         "specs": ["Ultra 9 285HX", "32G", "1T", "RTX 5060", "2.5K", "240Hz"]
     },
-    "拯救者 R9000P 2025": {
+    "联想 拯救者 R9000P 2025": {
         "price": 12999.0, "status": True,
         "specs": ["Ryzen 9 8945HX", "32G", "1T", "RTX 5060", "2.5K", "240Hz"]
     },
