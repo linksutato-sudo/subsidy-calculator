@@ -8,15 +8,15 @@ MAX_SUBSIDY = 1500.0  # 补贴上限
 MODEL_DB = {
     "拯救者 Y7000P 2025 (Ultra 7 255HX)": {
         "price": 10999.0, "status": True,
-        "specs": ["Ultra 7 255HX", "16G", "1T", "RTX 4060", "2.5K", "165Hz"]
+        "specs": ["Ultra 7 255HX", "16G", "1T", "RTX 5060", "2.5K", "165Hz"]
     },
     "拯救者 Y9000P 2025 (Ultra 7)": {
         "price": 12999.0, "status": True,
-        "specs": ["Ultra 7 255HX", "32G", "1T", "RTX 4070", "2.5K", "240Hz"]
+        "specs": ["Ultra 9 285HX", "32G", "1T", "RTX 5060", "2.5K", "240Hz"]
     },
     "拯救者 R9000P 2025": {
         "price": 12999.0, "status": True,
-        "specs": ["Ryzen 9 7945HX", "32G", "1T", "RTX 4070", "2.5K", "240Hz"]
+        "specs": ["Ryzen 9 8945HX", "32G", "1T", "RTX 5060", "2.5K", "240Hz"]
     },
     "自定义/其他机型": {
         "price": 0.0, "status": True,
