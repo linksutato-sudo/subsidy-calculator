@@ -10,7 +10,7 @@ MODEL_DB = {
         "price": 10999.0, "status": True,
         "specs": ["Ultra 7 255HX", "16G", "1T", "RTX 5060", "2.5K", "165Hz"]
     },
-    "联想 拯救者 Y9000P 2025 (Ultra 7)": {
+    "联想 拯救者 Y9000P 2025 (Ultra 9)": {
         "price": 12999.0, "status": True,
         "specs": ["Ultra 9 285HX", "32G", "1T", "RTX 5060", "2.5K", "240Hz"]
     },
