@@ -67,6 +67,8 @@ for brand, models in MODEL_DB.items():
         is_high_cpu = any(x in cpu for x in ["Ultra 5", "Ultra 7", "Ultra 9", "Ryzen 7", "Ryzen 9", "i7", "i9"])
         
         # 匹配逻辑
+        is_match = True
+        if final_price > budget: is_match = False
         elif ("传媒" in major_type or "计算机" in major_type):
             # 只要有强力独显，或者有强力 CPU + 强力核显，就认为合格
             if not (is_gaming_perf or (is_high_cpu and is_strong_igpu)):
