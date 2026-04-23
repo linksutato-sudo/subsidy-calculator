@@ -108,3 +108,13 @@ else:
     st.warning("☹️ 当前预算下未找到完美匹配，建议稍微调高预算或放宽便携性要求。")
 
 st.info("💡 提示：以上数据实时调用 2026 建议库。")
+
+# 侧边栏导航
+page = st.sidebar.radio("功能切换", ["智能机型推荐", "硬件性能百科"])
+
+if page == "智能机型推荐":
+    # 执行推荐逻辑
+    run_recommendation_ui() # 建议把推荐逻辑封装成函数
+else:
+    # 执行百科逻辑
+    render_hardware_wiki(RANK_DB)
