@@ -151,13 +151,13 @@ col_wiki1, col_wiki2, col_wiki3, col_wiki4 = st.columns(4)
 
 with col_wiki1:
     # 路径需匹配你 pages 文件夹下的文件名
-    st.page_link("1_国补计算器.py", label="国补计算器", icon="📱")
+    st.page_link("pages/1_国补计算器.py", label="国补计算器", icon="📱")
 
 with col_wiki2:
-    st.page_link("2_CPU性能百科.py", label="CPU性能百科", icon="🔍")
+    st.page_link("pages/2_CPU性能百科.py", label="CPU性能百科", icon="🔍")
 
 with col_wiki3:
-    st.page_link("3_内存性能百科.py", label="内存性能百科", icon="🔍")
+    st.page_link("pages/3_内存性能百科.py", label="内存性能百科", icon="🔍")
 
 with col_wiki4:
-    st.page_link("4_显卡性能百科.py", label="显卡性能百科", icon="🔍")
+    st.page_link("pages/4_显卡性能百科.py", label="显卡性能百科", icon="🔍")
