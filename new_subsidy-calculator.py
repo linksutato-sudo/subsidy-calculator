@@ -77,7 +77,37 @@ MODEL_DB = {
         "暗影精灵 10 (i7-14650HX)": {
             "price": 8999.0, "status": True,
             "specs": ["i7-14650HX", "16G", "1T", "RTX 5060", "2.5K", "240Hz"]
-        }
+        },
+        "光影精灵 11 悦龙版 (15")": {
+            "price": 9299.0,  
+            "status": True,
+            "specs": ["Ryzen 7 H 255", "24GB", "1TB", "RTX 5060 8G", "144H FHD"]
+        },
+        "OmniBook 3 星book 16": {
+            "price": 7999.0,
+            "status": True,
+            "specs": ["Core 7-240H", "32G DDR5", "1TB", "2.5K", "240Hz"]
+        },
+        "OmniBook 7 (星Book Pro 16)": {
+            "price": 6699.0,
+            "status": true,
+            "specs": ["Core 7-240H", "32G DDR5", "1TB", "2.5K", "240Hz"]
+        },
+        "OmniBook 7 (星Book Pro 14)": {
+            "price": 5599.0,
+            "status": true,
+            "specs": ["Core 5-220H", "16G", "1TB", "2.2K", "60Hz"]
+        },
+        "Pavilion 星Book Pro 14 Plus": {
+            "price": 6499.0,
+            "status": true,
+            "specs": ["Ultra 5 125H", "32G", "1TB", "2.5K", "120Hz"]
+        },
+        "星Book 15": {
+            "price": 4999.0,
+            "status": true,
+            "specs": ["Ultra 5 125H", "16G", "512G", "1080P FHD", "60Hz"]
+        },
     },
     "自定义": {
         "手动输入机型": {
