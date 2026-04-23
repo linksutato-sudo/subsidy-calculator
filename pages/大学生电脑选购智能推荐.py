@@ -26,10 +26,10 @@ def calculate_subsidy(price):
 
 # --- 3. Streamlit UI ---
 st.set_page_config(page_title="大学生选购助手 2026", layout="wide")
-st.title("🎓 大学生电脑选购智能推荐 (2026 国补版)")
+st.title("🎓 大学生电脑选购智能推荐")
 
 # 将输入框从 sidebar 移到主体部分，采用两列布局
-st.subheader("🔍 你的需求定制")
+st.subheader("🔍 选择你的学科专业与预算")
 col_input1, col_input2 = st.columns(2)
 
 with col_input1:
@@ -39,6 +39,7 @@ with col_input1:
 
 with col_input2:
     st.write("---") # 简单的视觉对齐
+    st.subheader("🔍 选择你的其他需求算")
     gaming_need = st.checkbox("有重度游戏需求 (3A大作)")
     portability_first = st.checkbox("优先考虑便携性 (常带去图书馆)")
 
