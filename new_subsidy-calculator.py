@@ -7,17 +7,70 @@ MAX_SUBSIDY = 1500.0  # 补贴上限
 # 升级后的数据库：按品牌分类 [价格, 是否国补, CPU, 内存, 硬盘, 显卡, 分辨率, 刷新率]
 MODEL_DB = {
     "联想 (Lenovo)": {
-        "拯救者 Y7000P 2025 (Ultra 7 255HX)": {
-            "price": 10999.0, "status": True,
-            "specs": ["Ultra 7 255HX", "16G", "1T", "RTX 5060", "2.5K", "165Hz"]
+       "拯救者 Y7000P IRX10 (i7-14650HX/1T)": {
+            "price": 11999.0, 
+            "status": True,
+            "specs": ["i7-14650HX", "16GB", "1TB", "RTX 5060 8G", "2.5K", "240Hz"]
         },
-        "拯救者 Y9000P 2025 (Ultra 9)": {
-            "price": 12999.0, "status": True,
-            "specs": ["Ultra 9 285HX", "32G", "1T", "RTX 5060", "2.5K", "240Hz"]
+        "拯救者 Y7000P IRX10 (i9-14900HX)": {
+            "price": 12999.0, 
+            "status": True,
+            "specs": ["i9-14900HX", "16GB", "1TB", "RTX 5060 8G", "2.5K", "240Hz"]
         },
-        "拯救者 R9000P 2025": {
-            "price": 12999.0, "status": True,
-            "specs": ["Ryzen 9 8945HX", "32G", "1T", "RTX 5060", "2.5K", "240Hz"]
+        "拯救者 Y7000P IRX10 (i7-14650HX/512G)": {
+            "price": 10999.0, 
+            "status": True,
+            "specs": ["i7-14650HX", "16GB", "512GB", "RTX 5060 8G", "2.5K", "240Hz"]
+        },
+        "拯救者 R7000P ADR10": {
+            "price": 12999.0, 
+            "status": True,
+            "specs": ["Ryzen 9 8945HX", "16GB", "1TB", "RTX 5060 8G", "2.5K", "240Hz"]
+        },
+        "小新 一体机 27-IRH (i5-13420H)": {
+            "price": 7099.0, 
+            "status": True,
+            "specs": ["i5-13420H", "16GB", "1TB", "Intel UHD Graphics", "1080P", "100Hz"]
+        },
+        "小新 Pro 16 2026 AI元启版": {
+            "price": 9999.0, 
+            "status": True,
+            "specs": ["Ultra 5 336H", "32GB", "1TB", "Intel Graphics", "15.9寸", "2.8K", "120Hz OLED"]
+        },
+        "小新 14 AHP10R": {
+            "price": 5999.0, 
+            "status": True,
+            "specs": ["Ryzen 7 H 255", "16GB", "512GB", "Radeon 780M", "1920*1200", "60Hz"]
+        },
+        "小新 Pro 14c AHP10R": {
+            "price": 7499.0, 
+            "status": True,
+            "specs": ["Ryzen 7 H 255", "32GB", "1TB", "Radeon 780M", "2.8K", "120Hz OLED"]
+        },
+        "小新 Pro 16c AHP10R": {
+            "price": 7999.0, 
+            "status": True,
+            "specs": ["Ryzen 7 H 255", "32GB", "1TB", "Radeon 780M", "2.8K", "120Hz OLED"]
+        },
+        "小新 16c AHP10": {
+            "price": 6499.0, 
+            "status": True,
+            "specs": ["Ryzen 7 8745HS", "16GB", "512GB", "Radeon 780M", "1920*1200", "60hZ"]
+        },
+        "小新 Pro 16 GT AI元启版": {
+            "price": 7999.0, 
+            "status": True,
+            "specs": ["Ultra 5 225H", "32GB", "1TB", "Intel Arc 130T", "2.8K", "120Hz OLED"]
+        },
+        "YOGA Pro 16 IAH10": {
+            "price": 11999.0, 
+            "status": True,
+            "specs": ["Ultra 9 285H", "32GB", "1TB", "RTX 5060 8G", "2.8K", "120Hz OLED"]
+        },
+        "YOGA Air 14 Aura AI元启版": {
+            "price": 9999.0, 
+            "status": True,
+            "specs": ["Ultra 7 258V", "32GB", "1TB", "Intel Arc 140V", "2.8K", "120Hz OLED"]
         },
     },
     "惠普 (HP)": {
