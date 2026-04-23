@@ -45,6 +45,12 @@ for brand, models in MODEL_DB.items():
     if brand == "自定义": continue # 跳过手动输入示例逻辑
     
     for name, data in models.items():
+        # 定义要排除的关键词
+        exclude_keywords = ["一体机", "AIO", "台式"]
+        
+        # 如果机型名称包含排除词，直接跳过当前循环
+        if any(kw in name for kw in exclude_keywords):
+            continue
         # 1. 提取原始数据
         price = data["price"]
         cpu, ram, ssd, gpu, screen, refresh = data["specs"]
