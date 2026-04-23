@@ -17,7 +17,7 @@ MODEL_DB = {
             "status": True,
             "specs": ["i9-14900HX", "16GB", "1TB", "RTX 5060 8G", "2.5K", "240Hz"]
         },
-        "拯救者 Y7000P IRX10 (i7-14650HX/512G)": {
+        "拯救者 Y7000 IRX10 (i7-14650HX/512G)": {
             "price": 10999.0, 
             "status": True,
             "specs": ["i7-14650HX", "16GB", "512GB", "RTX 5060 8G", "2.5K", "240Hz"]
