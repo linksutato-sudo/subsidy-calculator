@@ -55,32 +55,52 @@ for brand, models in MODEL_DB.items():
     if brand == "自定义": continue
     
     for name, data in models.items():
-        # 排除非笔记本项
         if any(kw in name for kw in ["一体机", "AIO", "台式"]): continue
         
         price = data["price"]
         cpu, ram, ssd, gpu, screen, refresh = data["specs"]
         final_price = calculate_subsidy(price)
         
-        # 性能标签化
+        # --- 1. 基础属性解析 ---
+        # 提取内存数值 (假设格式如 "32GB" 或 "32G")
+        ram_val = int(''.join(filter(str.isdigit, ram))) 
+        # 提取屏幕分辨率数值 (假设格式如 "2.5K" 或 "2880x1800")
+        is_2k_plus = any(x in screen.upper() for x in ["2K", "2.5K", "2.8K", "3K", "4K"]) or ("2" in screen and "x" in screen)
+
+        # --- 2. 性能标签化 ---
         is_gaming_perf = "5060" in gpu or "5070" in gpu
         is_high_cpu = any(x in cpu for x in ["Ultra 5 2", "Ultra 7", "Core 7", "Ultra 9", "Ryzen 7", "Ryzen 9", "i7", "i9"])
-        is_strong_igpu = any(x in gpu for x in ["Arc", "Radeon 780M", "140V"])
+        is_strong_igpu = any(x in gpu for x in ["Arc", "Radeon 780M", "140V", "核显"])
         
-        # 匹配逻辑
+        # 新增：生产力高性能判定（32G内存 + 2K屏 + 强CPU/强核显）
+        is_creative_high_spec = (ram_val >= 32 and is_2k_plus and (is_high_cpu or is_strong_igpu))
+
+        # --- 3. 匹配逻辑判定 ---
         is_match = True
-        if final_price > budget: is_match = False
-        elif ("传媒" in major_type or "计算机" in major_type):
-            # 只要有强力独显，或者有强力 CPU + 强力核显，就认为合格
-            if not (is_gaming_perf or (is_high_cpu and is_strong_igpu)):
-                is_match = False
-        # 匹配专业需求
-        if (gaming_need or "理工" in major_type) and not is_gaming_perf:
-            is_match = False
-        elif ("传媒" in major_type or "计算机" in major_type) and not (is_gaming_perf or is_high_cpu):
+        
+        # 预算过滤
+        if final_price > budget:
             is_match = False
             
-        # 便携性过滤（排除厚重游戏品牌）
+        # 传媒/艺术 (剪辑/设计) 专项过滤
+        elif "传媒" in major_type:
+            # 硬性要求：分辨率低于 2K 直接淘汰
+            if not is_2k_plus:
+                is_match = False
+            # 性能要求：必须是 游戏级性能 或 生产力高规格
+            elif not (is_gaming_perf or is_creative_high_spec):
+                is_match = False
+                
+        # 计算机专业过滤
+        elif "计算机" in major_type:
+            if not (is_gaming_perf or is_high_cpu or ram_val >= 32):
+                is_match = False
+        
+        # 理工科和重度游戏过滤
+        if (gaming_need or "理工" in major_type) and not is_gaming_perf:
+            is_match = False
+            
+        # 便携性过滤
         if portability_first and any(kw in name for kw in ["拯救者", "暗影精灵", "极光"]):
             is_match = False
 
@@ -93,7 +113,7 @@ for brand, models in MODEL_DB.items():
                 "核心配置": f"{cpu} | {ram} | {gpu}",
                 "屏幕": f"{screen} / {refresh}"
             })
-
+            
 # --- 6. 结果展示 ---
 if recommendations:
     df = pd.DataFrame(recommendations).sort_values(by="国补后", ascending=True)
