@@ -64,7 +64,7 @@ for brand, models in MODEL_DB.items():
         
         # 性能标签化
         is_gaming_perf = "5060" in gpu or "5070" in gpu
-        is_high_cpu = any(x in cpu for x in ["Ultra 5", "Ultra 7", "Ultra 9", "Ryzen 7", "Ryzen 9", "i7", "i9"])
+        is_high_cpu = any(x in cpu for x in ["Ultra 5", "Ultra 7", "Core 7", "Ultra 9", "Ryzen 7", "Ryzen 9", "i7", "i9"])
         is_strong_igpu = any(x in gpu for x in ["Arc", "Radeon 780M", "140V"])
         
         # 匹配逻辑
