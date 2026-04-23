@@ -89,8 +89,8 @@ for brand, models in MODEL_DB.items():
             recommendations.append({
                 "品牌": brand,
                 "型号": name,
-                "原价": f"¥{price:.0f}",
-                "国补后": f"¥{final_price:.2f}",
+                "原价": price,          # 修改：先存入纯数字，不要加 ¥ 符号
+                "国补后": final_price,   # 修改：先存入纯数字，方便排序
                 "核心配置": f"{cpu} | {ram} | {gpu}",
                 "屏幕": f"{screen} / {refresh}"
             })
@@ -98,6 +98,18 @@ for brand, models in MODEL_DB.items():
 # --- 结果显示区域 ---
 if recommendations:
     df = pd.DataFrame(recommendations)
+    
+    # 💡 新增 1：按“国补后”价格升序排序（从小到大）
+    # 如果你想从高到低排，可以改成 ascending=False
+    df = df.sort_values(by="国补后", ascending=True)
+    
+    # 💡 新增 2：排序完成后，再统一格式化为带人民币符号的文本
+    df["原价"] = df["原价"].apply(lambda x: f"¥{x:.0f}")
+    df["国补后"] = df["国补后"].apply(lambda x: f"¥{x:.2f}")
+    
+    # 重新设置一下索引（可选），避免排序后行号被打乱显示
+    df = df.reset_index(drop=True) 
+    
     st.dataframe(df, use_container_width=True) # 使用 dataframe 交互感更好
 else:
     st.warning("暂无完全匹配机型，建议适当增加预算或放宽要求。")
