@@ -1,117 +1,110 @@
 import streamlit as st
 import pandas as pd
-import json  # 必须导入这个库
+import json
 import os
 
-# 定义一个读取数据的函数
+# --- 1. 数据加载模块 ---
 def load_data():
-    file_path = "laptops.json"
-    if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
+    if os.path.exists("laptops.json"):
+        with open("laptops.json", "r", encoding="utf-8") as f:
             return json.load(f)
-    else:
-        st.error("未找到数据库文件 laptops.json！")
-        return {}
+    return {}
 
-# 调用函数获取数据库
+def load_tips():
+    if os.path.exists("tips.json"):
+        with open("tips.json", "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
 MODEL_DB = load_data()
+TIPS_DB = load_tips()
 
-# --- 后续的 calculate_subsidy 和 Streamlit 逻辑保持不变 ---
-
+# --- 2. 逻辑计算模块 ---
 def calculate_subsidy(price):
-    """计算2026年国补后的价格（15%补贴，最高1500）"""
-    subsidy_amount = min(price * 0.15, 1500)
-    return price - subsidy_amount
+    """2026年国补标准：15%补贴，最高1500元"""
+    return price - min(price * 0.15, 1500)
 
-# --- Streamlit UI 界面 ---
+# --- 3. Streamlit UI ---
 st.set_page_config(page_title="大学生选购助手 2026", layout="wide")
 st.title("🎓 大学生电脑选购智能推荐 (2026 国补版)")
 
-# 侧边栏：用户需求输入
 with st.sidebar:
     st.header("🔍 你的需求")
     major_type = st.selectbox("选择你的学科类别", 
         ["理工科 (仿真/建模/渲染)", "计算机/软件 (编程/虚拟机)", "传媒/艺术 (剪辑/设计)", "文管/通用 (办公/刷课)"])
     
-    budget = st.slider("你的预算范围 (国补后价格)", 3000, 14000, 7000)
+    budget = st.slider("你的预算上限 (国补后价格)", 3000, 14000, 8000)
     gaming_need = st.checkbox("有重度游戏需求 (3A大作)")
-    portability_first = st.checkbox("优先考虑便携性 (经常带去图书馆)")
+    portability_first = st.checkbox("优先考虑便携性 (常带去图书馆)")
 
-# 逻辑过滤
+# --- 4. 核心功能：基于建议库的智能贴士 ---
+if TIPS_DB:
+    with st.expander("✨ 针对你专业的选购小贴士", expanded=True):
+        # 自动匹配当前学科的建议
+        scenario_tip = TIPS_DB["scenarios"].get(major_type, "选择专业以查看定制建议")
+        st.info(scenario_tip)
+        
+        # 动态解析 CPU 类型
+        st.caption("🔍 **快速避坑：** " + " | ".join([f"**{k}**: {v}" for k, v in TIPS_DB["cpu_wiki"].items()]))
+
+# --- 5. 过滤与推荐算法 ---
 st.subheader("💡 为你匹配的机型")
 
 recommendations = []
 for brand, models in MODEL_DB.items():
-    if brand == "自定义": continue # 跳过手动输入示例逻辑
+    if brand == "自定义": continue
     
     for name, data in models.items():
-        # 定义要排除的关键词
-        exclude_keywords = ["一体机", "AIO", "台式"]
+        # 排除非笔记本项
+        if any(kw in name for kw in ["一体机", "AIO", "台式"]): continue
         
-        # 如果机型名称包含排除词，直接跳过当前循环
-        if any(kw in name for kw in exclude_keywords):
-            continue
-        # 1. 提取原始数据
         price = data["price"]
         cpu, ram, ssd, gpu, screen, refresh = data["specs"]
-        
-        # 2. 计算补贴后价格 (关键修复：定义 final_price)
         final_price = calculate_subsidy(price)
         
-        # 3. 定义性能特征
+        # 性能标签化
         is_gaming_perf = "5060" in gpu or "5070" in gpu
-        is_design_perf = is_gaming_perf or any(x in cpu for x in ["Ultra 7", "Ultra 9", "Ryzen 7", "Ryzen 9", "i7", "i9"])
+        is_high_cpu = any(x in cpu for x in ["Ultra 7", "Ultra 9", "Ryzen 9", "i9"])
         
-        # 4. 匹配逻辑
+        # 匹配逻辑
         is_match = True
+        if final_price > budget: is_match = False
         
-        # 预算过滤
-        if final_price > budget:
+        # 匹配专业需求
+        if (gaming_need or "理工" in major_type) and not is_gaming_perf:
             is_match = False
-        
-        # 性能/专业匹配
-        if gaming_need or "理工" in major_type:
-            # 游戏和理工科强需求 GPU
-            if not is_gaming_perf: 
-                is_match = False
-        elif "传媒" in major_type or "计算机" in major_type:
-            # 传媒和计算机需要较强的 CPU 或全能配置
-            if not is_design_perf: 
-                is_match = False
-        
-        # 便携性过滤
-        if portability_first:
-            # 排除厚重的游戏本系列
-            if any(keyword in name for keyword in ["拯救者", "暗影精灵", "光影精灵"]):
-                is_match = False
+        elif ("传媒" in major_type or "计算机" in major_type) and not (is_gaming_perf or is_high_cpu):
+            is_match = False
+            
+        # 便携性过滤（排除厚重游戏品牌）
+        if portability_first and any(kw in name for kw in ["拯救者", "暗影精灵", "极光"]):
+            is_match = False
 
         if is_match:
             recommendations.append({
                 "品牌": brand,
                 "型号": name,
-                "原价": price,          # 修改：先存入纯数字，不要加 ¥ 符号
-                "国补后": final_price,   # 修改：先存入纯数字，方便排序
+                "原价": price,
+                "国补后": final_price,
                 "核心配置": f"{cpu} | {ram} | {gpu}",
                 "屏幕": f"{screen} / {refresh}"
             })
 
-# --- 结果显示区域 ---
+# --- 6. 结果展示 ---
 if recommendations:
-    df = pd.DataFrame(recommendations)
+    df = pd.DataFrame(recommendations).sort_values(by="国补后", ascending=True)
     
-    # 💡 新增 1：按“国补后”价格升序排序（从小到大）
-    # 如果你想从高到低排，可以改成 ascending=False
-    df = df.sort_values(by="国补后", ascending=True)
+    # 格式化输出
+    df_display = df.copy()
+    df_display["原价"] = df_display["原价"].apply(lambda x: f"¥{x:.0f}")
+    df_display["国补后"] = df_display["国补后"].apply(lambda x: f"¥{x:.2f}")
     
-    # 💡 新增 2：排序完成后，再统一格式化为带人民币符号的文本
-    df["原价"] = df["原价"].apply(lambda x: f"¥{x:.0f}")
-    df["国补后"] = df["国补后"].apply(lambda x: f"¥{x:.2f}")
+    st.table(df_display.reset_index(drop=True))
     
-    # 重新设置一下索引（可选），避免排序后行号被打乱显示
-    df = df.reset_index(drop=True) 
-    
-    st.dataframe(df, use_container_width=True) # 使用 dataframe 交互感更好
+    # 额外反馈
+    best_deal = df.iloc[0]
+    st.success(f"✅ 最省钱方案：**{best_deal['型号']}**，国补后仅需 **¥{best_deal['国补后']:.2f}**")
 else:
-    st.warning("暂无完全匹配机型，建议适当增加预算或放宽要求。")
+    st.warning("☹️ 当前预算下未找到完美匹配，建议稍微调高预算或放宽便携性要求。")
 
-st.info("💡 提示：2026年国补单件最高省1500元，以上价格仅供参考。")
+st.info("💡 提示：以上数据实时调用 2026 建议库。")
