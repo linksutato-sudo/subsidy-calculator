@@ -4,7 +4,7 @@ import os
 
 # 1. 独立的数据加载函数
 def load_rank_data():
-    file_path = "hardware_rank.json"
+    file_path = "pages/pages/hardware_rank.json"
     if os.path.exists(file_path):
         with open(file_path, "r", encoding="utf-8") as f:
             return json.load(f)
