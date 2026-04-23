@@ -129,7 +129,8 @@ with st.sidebar:
     major_type = st.selectbox("选择你的学科类别", 
         ["理工科 (仿真/建模/渲染)", "计算机/软件 (编程/虚拟机)", "传媒/艺术 (剪辑/设计)", "文管/通用 (办公/刷课)"])
     
-    budget = st.slider("你的预算范围 (补贴前)", 4000, 15000, 8000)
+    # 修改此处：明确是补贴后预算
+    budget = st.slider("你的预算范围 (国补后价格)", 3000, 14000, 7000)
     
     gaming_need = st.checkbox("有重度游戏需求 (3A大作)")
     portability_first = st.checkbox("优先考虑便携性 (经常带去图书馆)")
@@ -140,20 +141,22 @@ st.subheader("💡 为你匹配的机型")
 recommendations = []
 for brand, models in MODEL_DB.items():
     for name, data in models.items():
-        # 正确的提取方式：
+        # 1. 提取数据 (修复之前的解包报错)
         price = data["price"]
         has_subsidy = data["status"]
-        # 从 specs 列表中按顺序提取
-        cpu, ram, ssd, gpu, screen, refresh = data["specs"] 
+        cpu, ram, ssd, gpu, screen, refresh = data["specs"]
         
+        # 2. 先计算补贴后价格
         final_price = calculate_subsidy(price) if has_subsidy else price
-        # ... 后续逻辑保持不变
         
-        # 匹配逻辑
+        # 3. 匹配逻辑：使用 final_price 与用户输入的 budget 对比
         is_match = True
-        if price > budget + 1000: is_match = False
         
-        # 性能强度判断
+        # 如果补贴后的价格超过了用户的预算，则排除
+        if final_price > budget: 
+            is_match = False
+        
+        # 4. 其他性能强度判断
         is_high_perf = "5060" in gpu or "i7" in cpu or "i9" in cpu or "R9" in cpu
         
         if gaming_need or "理工" in major_type or "传媒" in major_type:
@@ -170,13 +173,3 @@ for brand, models in MODEL_DB.items():
                 "国补后": f"¥{final_price:.2f}",
                 "核心配置": f"{cpu} | {ram} | {gpu}",
             })
-
-if recommendations:
-    df = pd.DataFrame(recommendations)
-    st.table(df)
-else:
-    st.warning("暂无完全匹配机型，建议适当增加预算或放宽要求。")
-
-st.info("💡 提示：2026年国补单件最高省1500元，以上价格仅供参考，以店面实际结账为准。")
-
-
