@@ -173,3 +173,12 @@ for brand, models in MODEL_DB.items():
                 "国补后": f"¥{final_price:.2f}",
                 "核心配置": f"{cpu} | {ram} | {gpu}",
             })
+# --- 结果显示区域 ---
+if recommendations:
+    df = pd.DataFrame(recommendations)
+    # 使用 st.dataframe 可以让表格支持鼠标滚动和排序，体验更好
+    st.table(df) 
+else:
+    st.warning("暂无完全匹配机型，建议适当增加预算或放宽要求。")
+
+st.info("💡 提示：2026年国补单件最高省1500元，以上价格仅供参考，以店面实际结账为准。")
