@@ -35,7 +35,7 @@ MODEL_DB = {
         "小新 Pro 16 2026 AI元启版": {
             "price": 9999.0, 
             "status": True,
-            "specs": ["Ultra 5 336H", "32GB", "1TB", "Intel Graphics", "15.9寸", "2.8K", "120Hz OLED"]
+            "specs": ["Ultra 5 336H", "32GB", "1TB", "Intel Graphics", "2.8K", "120Hz OLED"]
         },
         "小新 14 AHP10R": {
             "price": 5999.0, 
