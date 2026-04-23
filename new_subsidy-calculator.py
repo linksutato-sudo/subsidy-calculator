@@ -95,17 +95,17 @@ MODEL_DB = {
         },
         "OmniBook 7 (星Book Pro 14)": {
             "price": 5599.0,
-            "status": true,
+            "status": True,
             "specs": ["Core 5-220H", "16G", "1TB", "2.2K", "60Hz"]
         },
         "Pavilion 星Book Pro 14 Plus": {
             "price": 6499.0,
-            "status": true,
+            "status": True,
             "specs": ["Ultra 5 125H", "32G", "1TB", "2.5K", "120Hz"]
         },
         "星Book 15": {
             "price": 4999.0,
-            "status": true,
+            "status": True,
             "specs": ["Ultra 5 125H", "16G", "512G", "1080P FHD", "60Hz"]
         },
     },
