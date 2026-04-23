@@ -157,8 +157,35 @@ for brand, models in MODEL_DB.items():
             is_match = False
         
         # 4. 其他性能强度判断
-        is_high_perf = "5060" in gpu or "i7" in cpu or "i9" in cpu or "R9" in cpu
+        #is_high_perf = "5060" in gpu or "i7" in cpu or "i9" in cpu or "R9" in cpu
+        # --- 修改后的匹配逻辑 ---
+
+        # 1. 定义什么是“发烧级性能”（适合重度 3A 游戏和理工科建模）
+        is_gaming_perf = "5060" in gpu or "5070" in gpu
         
+        # 2. 定义什么是“全能级性能”（适合传媒剪辑、设计，包含新款 Ultra 处理器）
+        is_design_perf = is_gaming_perf or "Ultra 7" in cpu or "Ultra 9" in cpu or "Ryzen 7" in cpu or "Ryzen 9" in cpu
+        
+        # 3. 针对不同专业实施过滤
+        is_match = True
+        
+        # 预算过滤
+        if final_price > budget: is_match = False
+        
+        # 性能过滤逻辑
+        if gaming_need or "理工" in major_type:
+            # 游戏和理工科必须要是发烧级显卡
+            if not is_gaming_perf: is_match = False
+        elif "传媒" in major_type:
+            # 传媒设计只需要达到“全能级”即可（包含高性能轻薄本）
+            if not is_design_perf: is_match = False
+        
+        # 便携性过滤
+        if portability_first:
+            # 如果勾选了便携，排除掉笨重的游戏本系列
+            if "拯救者" in name or "暗影精灵" in name or "光影精灵" in name: 
+                is_match = False
+        # 性能判断结束
         if gaming_need or "理工" in major_type or "传媒" in major_type:
             if not is_high_perf: is_match = False
             
