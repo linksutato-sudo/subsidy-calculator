@@ -149,9 +149,7 @@ for brand, models in MODEL_DB.items():
         
        
         
-        # 如果补贴后的价格超过了用户的预算，则排除
-        if final_price > budget: 
-            is_match = False
+
         
         # 4. 其他性能强度判断
         #is_high_perf = "5060" in gpu or "i7" in cpu or "i9" in cpu or "R9" in cpu
