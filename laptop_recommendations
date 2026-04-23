@@ -173,4 +173,4 @@ else:
 
 st.info("💡 提示：2026年国补单件最高省1500元，以上价格仅供参考，以店面实际结账为准。")
 
-Fix: add .py extension
+add .py extension
