@@ -90,7 +90,7 @@ MODEL_DB = {
         },
         "OmniBook 7 (星Book Pro 16)": {
             "price": 6699.0,
-            "status": true,
+            "status": True,
             "specs": ["Core 7-240H", "32G DDR5", "1TB", "2.5K", "240Hz"]
         },
         "OmniBook 7 (星Book Pro 14)": {
