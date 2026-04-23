@@ -45,9 +45,9 @@ if TIPS_DB:
         st.info(scenario_tip)
         
         # 动态解析 CPU 类型
-        st.caption("🔍 **快速避坑：** " + " | ".join([
-            "**HX系列**: 性能怪兽但必须插电，不插电性能腰斩",
-            "**Ultra V/H**: 2026主流选Ultra，续航翻倍且带AI NPU",
+        st.caption("🔍 **快速避坑：CPU选购** " + " | ".join([
+            "**HX系列**: 性能强劲但必须插电，不插电性能缩水",
+            "**Ultra V/H**: 2026主流选Ultra，续航翻倍且支持AI NPU",
             "**Ryzen**: 买新不买旧，选8000/9000系列兼顾核显游戏"
         ]))
 
