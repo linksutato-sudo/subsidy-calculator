@@ -3,6 +3,9 @@ import pandas as pd
 import json  # 必须导入这个库
 import os
 
+DISCOUNT_RATE = 0.15
+MAX_SUBSIDY = 1500.0
+
 # 定义一个读取数据的函数
 def load_data():
     file_path = "laptops.json"
