@@ -146,11 +146,8 @@ for brand, models in MODEL_DB.items():
         has_subsidy = data["status"]
         cpu, ram, ssd, gpu, screen, refresh = data["specs"]
         
-        # 2. 先计算补贴后价格
-        final_price = calculate_subsidy(price) if has_subsidy else price
         
-        # 3. 匹配逻辑：使用 final_price 与用户输入的 budget 对比
-        is_match = True
+       
         
         # 如果补贴后的价格超过了用户的预算，则排除
         if final_price > budget: 
