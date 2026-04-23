@@ -163,3 +163,11 @@ with col_wiki3:
 
 with col_wiki4:
     st.page_link("pages/4_显卡性能百科.py", label="显卡性能百科", icon="🔍")
+
+
+#收起侧边栏
+st.set_page_config(
+    page_title="大学生选购助手 2026", 
+    layout="wide",
+    initial_sidebar_state="collapsed" # 默认收起侧边栏
+)
