@@ -113,9 +113,8 @@ MODEL_DB = {
         }
     }
 }
-
 def calculate_subsidy(price):
-    """计算2026年国补后的价格"""
+    """计算2026年国补后的价格（15%补贴，最高1500）"""
     subsidy_amount = min(price * 0.15, 1500)
     return price - subsidy_amount
 
@@ -129,9 +128,7 @@ with st.sidebar:
     major_type = st.selectbox("选择你的学科类别", 
         ["理工科 (仿真/建模/渲染)", "计算机/软件 (编程/虚拟机)", "传媒/艺术 (剪辑/设计)", "文管/通用 (办公/刷课)"])
     
-    # 修改此处：明确是补贴后预算
     budget = st.slider("你的预算范围 (国补后价格)", 3000, 14000, 7000)
-    
     gaming_need = st.checkbox("有重度游戏需求 (3A大作)")
     portability_first = st.checkbox("优先考虑便携性 (经常带去图书馆)")
 
@@ -140,67 +137,58 @@ st.subheader("💡 为你匹配的机型")
 
 recommendations = []
 for brand, models in MODEL_DB.items():
+    if brand == "自定义": continue # 跳过手动输入示例逻辑
+    
     for name, data in models.items():
-        # 1. 提取数据 (修复之前的解包报错)
+        # 1. 提取原始数据
         price = data["price"]
-        has_subsidy = data["status"]
         cpu, ram, ssd, gpu, screen, refresh = data["specs"]
         
+        # 2. 计算补贴后价格 (关键修复：定义 final_price)
+        final_price = calculate_subsidy(price)
         
-       
-        
-
-        
-        # 4. 其他性能强度判断
-        #is_high_perf = "5060" in gpu or "i7" in cpu or "i9" in cpu or "R9" in cpu
-        # --- 修改后的匹配逻辑 ---
-
-        # 1. 定义什么是“发烧级性能”（适合重度 3A 游戏和理工科建模）
+        # 3. 定义性能特征
         is_gaming_perf = "5060" in gpu or "5070" in gpu
+        is_design_perf = is_gaming_perf or any(x in cpu for x in ["Ultra 7", "Ultra 9", "Ryzen 7", "Ryzen 9", "i7", "i9"])
         
-        # 2. 定义什么是“全能级性能”（适合传媒剪辑、设计，包含新款 Ultra 处理器）
-        is_design_perf = is_gaming_perf or "Ultra 7" in cpu or "Ultra 9" in cpu or "Ryzen 7" in cpu or "Ryzen 9" in cpu
-        
-        # 3. 针对不同专业实施过滤
+        # 4. 匹配逻辑
         is_match = True
         
         # 预算过滤
-        if final_price > budget: is_match = False
+        if final_price > budget:
+            is_match = False
         
-        # 性能过滤逻辑
+        # 性能/专业匹配
         if gaming_need or "理工" in major_type:
-            # 游戏和理工科必须要是发烧级显卡
-            if not is_gaming_perf: is_match = False
-        elif "传媒" in major_type:
-            # 传媒设计只需要达到“全能级”即可（包含高性能轻薄本）
-            if not is_design_perf: is_match = False
+            # 游戏和理工科强需求 GPU
+            if not is_gaming_perf: 
+                is_match = False
+        elif "传媒" in major_type or "计算机" in major_type:
+            # 传媒和计算机需要较强的 CPU 或全能配置
+            if not is_design_perf: 
+                is_match = False
         
         # 便携性过滤
         if portability_first:
-            # 如果勾选了便携，排除掉笨重的游戏本系列
-            if "拯救者" in name or "暗影精灵" in name or "光影精灵" in name: 
+            # 排除厚重的游戏本系列
+            if any(keyword in name for keyword in ["拯救者", "暗影精灵", "光影精灵"]):
                 is_match = False
-        # 性能判断结束
-        if gaming_need or "理工" in major_type or "传媒" in major_type:
-            if not is_high_perf: is_match = False
-            
-        if portability_first:
-            if "拯救者" in name or "暗影精灵" in name: is_match = False
 
         if is_match:
             recommendations.append({
                 "品牌": brand,
                 "型号": name,
-                "原价": f"¥{price}",
+                "原价": f"¥{price:.0f}",
                 "国补后": f"¥{final_price:.2f}",
                 "核心配置": f"{cpu} | {ram} | {gpu}",
+                "屏幕": f"{screen} / {refresh}"
             })
+
 # --- 结果显示区域 ---
 if recommendations:
     df = pd.DataFrame(recommendations)
-    # 使用 st.dataframe 可以让表格支持鼠标滚动和排序，体验更好
-    st.table(df) 
+    st.dataframe(df, use_container_width=True) # 使用 dataframe 交互感更好
 else:
     st.warning("暂无完全匹配机型，建议适当增加预算或放宽要求。")
 
-st.info("💡 提示：2026年国补单件最高省1500元，以上价格仅供参考，以店面实际结账为准。")
+st.info("💡 提示：2026年国补单件最高省1500元，以上价格仅供参考。")
