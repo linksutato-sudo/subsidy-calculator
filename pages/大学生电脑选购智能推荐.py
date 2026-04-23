@@ -143,15 +143,21 @@ else:
 st.info("💡 提示：以上建议仅供参考。")
 
 # --- 7. 底部百科导航 ---
-st.divider() # 添加一条分割线
-st.markdown("### 📚 硬件性能百科")
+st.divider()  # 添加一条分割线
+st.markdown("### 📚 其他功能")
+
+# 使用 columns 让链接横向排布
 col_wiki1, col_wiki2, col_wiki3, col_wiki4 = st.columns(4)
 
 with col_wiki1:
-    st.button("🧮 国补计算器", use_container_width=True)
+    # 路径需匹配你 pages 文件夹下的文件名
+    st.page_link("pages/1_🧮_国补计算器.py", label="国补计算器", icon="🧮")
+
 with col_wiki2:
-    st.button("🔍 CPU性能百科", use_container_width=True)
+    st.page_link("pages/2_🔍_CPU性能百科.py", label="CPU性能百科", icon="🔍")
+
 with col_wiki3:
-    st.button("🧠 内存性能百科", use_container_width=True)
+    st.page_link("pages/3_🔍_内存性能百科.py", label="内存性能百科", icon="🧠")
+
 with col_wiki4:
-    st.button("🖼️ 显卡性能百科", use_container_width=True)
+    st.page_link("pages/4_🔍_显卡性能百科.py", label="显卡性能百科", icon="🖼️")
