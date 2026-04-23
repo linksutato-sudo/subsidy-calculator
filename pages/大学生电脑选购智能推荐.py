@@ -28,12 +28,17 @@ def calculate_subsidy(price):
 st.set_page_config(page_title="大学生选购助手 2026", layout="wide")
 st.title("🎓 大学生电脑选购智能推荐 (2026 国补版)")
 
-with st.sidebar:
-    st.header("🔍 你的需求")
+# 将输入框从 sidebar 移到主体部分，采用两列布局
+st.subheader("🔍 你的需求定制")
+col_input1, col_input2 = st.columns(2)
+
+with col_input1:
     major_type = st.selectbox("选择你的学科类别", 
         ["理工科 (仿真/建模/渲染)", "计算机/软件 (编程/虚拟机)", "传媒/艺术 (剪辑/设计)", "文管/通用 (办公/刷课)"])
-    
     budget = st.slider("你的预算上限 (国补后价格)", 3000, 14000, 8000)
+
+with col_input2:
+    st.write("---") # 简单的视觉对齐
     gaming_need = st.checkbox("有重度游戏需求 (3A大作)")
     portability_first = st.checkbox("优先考虑便携性 (常带去图书馆)")
 
@@ -136,3 +141,17 @@ else:
     st.warning("☹️ 当前预算下未找到完美匹配，建议稍微调高预算或放宽便携性要求。")
 
 st.info("💡 提示：以上建议仅供参考。")
+
+# --- 7. 底部百科导航 ---
+st.divider() # 添加一条分割线
+st.markdown("### 📚 硬件性能百科")
+col_wiki1, col_wiki2, col_wiki3, col_wiki4 = st.columns(4)
+
+with col_wiki1:
+    st.button("🧮 国补计算器", use_container_width=True)
+with col_wiki2:
+    st.button("🔍 CPU性能百科", use_container_width=True)
+with col_wiki3:
+    st.button("🧠 内存性能百科", use_container_width=True)
+with col_wiki4:
+    st.button("🖼️ 显卡性能百科", use_container_width=True)
