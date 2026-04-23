@@ -38,8 +38,8 @@ with col_input1:
     budget = st.slider("你的预算上限 (国补后价格)", 3000, 14000, 8000)
 
 with col_input2:
-    st.write("---") # 简单的视觉对齐
-    st.subheader("🔍 选择你的其他需求算")
+    #st.write("---") # 简单的视觉对齐
+    st.subheader("🔍 选择你的其他需求")
     gaming_need = st.checkbox("有重度游戏需求 (3A大作)")
     portability_first = st.checkbox("优先考虑便携性 (常带去图书馆)")
 
