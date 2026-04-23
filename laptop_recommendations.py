@@ -140,8 +140,14 @@ st.subheader("💡 为你匹配的机型")
 recommendations = []
 for brand, models in MODEL_DB.items():
     for name, data in models.items():
-        price, has_subsidy, cpu, ram, ssd, gpu = data
+        # 正确的提取方式：
+        price = data["price"]
+        has_subsidy = data["status"]
+        # 从 specs 列表中按顺序提取
+        cpu, ram, ssd, gpu, screen, refresh = data["specs"] 
+        
         final_price = calculate_subsidy(price) if has_subsidy else price
+        # ... 后续逻辑保持不变
         
         # 匹配逻辑
         is_match = True
