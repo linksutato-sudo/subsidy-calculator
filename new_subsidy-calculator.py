@@ -78,7 +78,7 @@ MODEL_DB = {
             "price": 8999.0, "status": True,
             "specs": ["i7-14650HX", "16G", "1T", "RTX 5060", "2.5K", "240Hz"]
         },
-        "光影精灵 11 悦龙版 (15")": {
+        '光影精灵 11 悦龙版 (15")': {
             "price": 9299.0,  
             "status": True,
             "specs": ["Ryzen 7 H 255", "24GB", "1TB", "RTX 5060 8G", "144H FHD"]
