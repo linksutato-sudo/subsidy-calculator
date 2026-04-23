@@ -42,7 +42,7 @@ with col_input2:
     #st.write("---") # 简单的视觉对齐
     st.subheader("◎    其他需求")
     gaming_need = st.checkbox("有重度游戏需求 (3A大作)")
-    portability_first = st.checkbox("优先考虑便携性 (常带去图书馆)")
+    portability_first = st.checkbox("优先考虑便携性 (常带去图书馆、出差)")
 
 # --- 4. 核心功能：基于建议库的智能贴士 ---
 if TIPS_DB:
