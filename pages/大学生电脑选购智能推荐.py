@@ -29,10 +29,11 @@ st.set_page_config(page_title="大学生选购助手 2026", layout="wide")
 st.title("🎓 大学生电脑选购智能推荐")
 
 # 将输入框从 sidebar 移到主体部分，采用两列布局
-st.subheader("🔍 选择你的学科专业与预算")
+#st.subheader("🔍 选择你的学科专业与预算")
 col_input1, col_input2 = st.columns(2)
 
 with col_input1:
+    st.subheader("🔍 选择你的学科专业与预算")
     major_type = st.selectbox("选择你的学科类别", 
         ["理工科 (仿真/建模/渲染)", "计算机/软件 (编程/虚拟机)", "传媒/艺术 (剪辑/设计)", "文管/通用 (办公/刷课)"])
     budget = st.slider("你的预算上限 (国补后价格)", 3000, 14000, 8000)
