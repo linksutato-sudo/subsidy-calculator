@@ -103,6 +103,33 @@
             "specs": ["Ultra 5 125H", "16G", "512G", "Intel(R) Arc(TM) Graphics", "1080P FHD", "60Hz"]
         }
     },
+    "戴尔 (DELL)": {
+        "Dell 15 D15260": {
+            "price": 8899,
+            "status": true,
+            "specs": ["Ultra 5 225H", "16G", "512G", "Intel(R) Graphics", "1080P FHD", "120Hz"]
+        },
+        "Inspiron 14 Plus 7440F-1605L": {
+            "price": 4899,
+            "status": true,
+            "specs": ["Core 5 210H", "16G", "512G", "Intel(R) Graphics", "1920x1200", "60Hz"]
+        },
+        "Inspiron 14 Plus 7440F-4609L（暂无国补）": {
+            "price": 7499,
+            "status": false,
+            "specs": ["Core 5 210H", "32G", "1TB", "Intel(R) Graphics", "2.5K (2560x1600)", "120Hz"]
+        },
+        "Inspiron 16 7640A-1605L": {
+            "price": 4599,
+            "status": true,
+            "specs": ["i5-12450H", "16G", "512G", "Intel(R) UHD Graphics", "1920x1200", "60Hz"]
+        },
+        "Inspiron 14 Plus 7440-1608L": {
+            "price": 7299,
+            "status": true,
+            "specs": ["Ultra 5 125H", "16G", "1TB", "Intel(R) Arc(TM) Graphics", "2.8K (2880x1800)", "90Hz"]
+        }
+    },
     "自定义": {
         "手动输入机型": {
             "price": 0.0,
