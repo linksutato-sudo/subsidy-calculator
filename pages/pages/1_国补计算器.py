@@ -49,14 +49,20 @@ if selected_brand != "自定义":
 
 st.divider()
 
+
 # --- 第二步：价格与补贴调整 ---
 col_a, col_b = st.columns(2)
-with col_a:
-    # 使用 key 确保在切换机型时 number_input 能够刷新
-    price = st.number_input("商品原价 (元)", value=model_data["price"], step=1.0, key=f"p_{selected_model}")
-with col_b:
-    is_eligible = st.toggle("是否支持国补", value=model_data["status"], key=f"t_{selected_model}")
 
+with col_a:
+    # 使用 .get() 获取价格，如果数据中没有填写 price，默认显示 0.0
+    default_price = float(model_data.get("price", 0.0))
+    price = st.number_input("商品标价 (元)", value=default_price, step=1.0, key=f"p_{selected_model}")
+    
+with col_b:
+    # 使用 .get() 获取补贴状态，如果数据中没写 status 字段，默认当做 False（不参加国补）
+    default_status = bool(model_data.get("status", False))
+    is_eligible = st.toggle("是否享受国补", value=default_status, key=f"t_{selected_model}")
+    
 has_store_discount = st.toggle("是否有店补？")
 store_discount = 0.0
 if has_store_discount:
