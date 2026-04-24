@@ -179,7 +179,7 @@ footer_left, footer_mid, footer_right = st.columns([2, 1, 1])
 
 with footer_left:
     st.markdown("### 📍 线下体验店地址")
-    st.write("🏠 **地址**：北京市海淀区中关村大街 XX 号智能数码广场 1 楼 A102")
+    st.write("🏠 **地址**：黔西南布依族苗族自治州 兴义市 神奇东路1号 泰鑫科技数码城 2楼")
     
     # 使用 Markdown 语法创建超链接
     # 将引号内的 URL 替换为百度地图或高德地图的分享链接
