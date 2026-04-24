@@ -178,7 +178,7 @@ st.divider() # 添加一条精美的分割线
 footer_left, footer_mid, footer_right = st.columns([2, 1, 1])
 
 with footer_left:
-    st.markdown("### 📍 线下体验店地址")
+    st.markdown("### 📍 店铺地址")
     st.write("🏠 **地址**：黔西南布依族苗族自治州 兴义市 神奇东路1号 泰鑫科技数码城 2楼")
     
     # 使用 Markdown 语法创建超链接
