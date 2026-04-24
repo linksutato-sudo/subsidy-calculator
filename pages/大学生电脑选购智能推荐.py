@@ -194,6 +194,6 @@ with footer_mid:
     st.write("客服电话：0859-3227511")
     st.write("营业时间：09:00 - 18:00")
 
-with footer_right:
-    st.caption("扫码关注公众号获取更多补贴资讯")
+#with footer_right:
+ #   st.caption("扫码关注公众号获取更多补贴资讯")
     # 如果你有二维码图片，可以使用 st.image("qrcode.png", width=100)
