@@ -166,3 +166,35 @@ with col_wiki3:
 
 with col_wiki4:
     st.page_link("pages/4_显卡性能百科.py", label="显卡性能百科", icon="🔍")
+#收起侧边栏
+st.set_page_config(
+    page_title="电脑选购助手 2026", 
+    layout="wide",
+    initial_sidebar_state="collapsed" # 默认收起侧边栏
+)
+# --- 页面底部：店铺信息与地图导向 ---
+st.divider() # 添加一条精美的分割线
+
+# 创建三列布局，让地址居中或靠左显示
+footer_left, footer_mid, footer_right = st.columns([2, 1, 1])
+
+with footer_left:
+    st.markdown("### 📍 店铺地址")
+    st.write("🏠 **地址**：黔西南布依族苗族自治州 兴义市 神奇东路1号 泰鑫科技数码城 2楼")
+    
+    # 使用 Markdown 语法创建超链接
+    # 将引号内的 URL 替换为百度地图或高德地图的分享链接
+    map_url_1 = "https://surl.amap.com/4qgDXUmc5lM" 
+    st.markdown(f"🔗 [点击此处在地图中查看 (高德地图)]({map_url_1})")
+
+    map_url_2 = "https://j.map.baidu.com/56/51iM" 
+    st.markdown(f"🔗 [点击此处在地图中查看 (百度地图)]({map_url_2})")
+
+with footer_mid:
+    st.markdown("### 📞 联系方式")
+    st.write("客服电话：0859-3227511")
+    st.write("营业时间：09:00 - 18:00")
+
+#with footer_right:
+ #   st.caption("扫码关注公众号获取更多补贴资讯")
+    # 如果你有二维码图片，可以使用 st.image("qrcode.png", width=100)
