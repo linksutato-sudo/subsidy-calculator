@@ -21,16 +21,68 @@ def render_gpu_wiki():
     df = pd.DataFrame(gpu_data)
     st.table(df)
 
-    # --- 新增：显卡渲染科普 ---
+# --- 新增：显卡渲染科普 ---
     with st.expander("🔍 什么时候才真正需要“显卡渲染”？ (点击展开科普)"):
+        st.markdown("### 🛠️ 核心操作触发")
         st.markdown("""
         只有当你触碰以下操作时，显卡（特别是独立显卡）才会介入并进行高强度的**“渲染”**计算：
-        1. **加特效**：模糊、发光、扭曲、粒子效果。
-        2. **调色**：尤其是达芬奇调色（DaVinci Resolve），极度依赖显卡算力。
-        3. **转场**：复杂的 3D 效果转场。
-        4. **AI 功能**：智能抠像、语音转文字（部分依赖 NPU 或 GPU 加速）。
-        5. **导出**：虽然 CPU 也能导出，但显卡开启硬件加速（CUDA/NVENC）后，导出速度会快几倍。
+        * **剪辑特效**：模糊、发光、扭曲、粒子效果及复杂的 3D 效果转场。
+        * **深度调色**：尤其是达芬奇（DaVinci Resolve），极度依赖 GPU 算力。
+        * **硬件加速导出**：利用 CUDA/NVENC 技术，导出速度比纯 CPU 快数倍。
+        * **AI 功能集成**：智能抠像、生成式填充、语音转文字加速。
         """)
+        
+        st.divider()
+        
+        st.markdown("### 🌐 2026 全行业深度应用场景")
+        
+        # 使用标签页对信息进行分类展示，防止页面过长
+        render_tab1, render_tab2, render_tab3 = st.tabs(["🎮 娱乐与创作", "🔬 科学与计算", "🤖 AI 与工业"])
+        
+        with render_tab1:
+            col_a, col_b = st.columns(2)
+            with col_a:
+                st.markdown("**🕹️ 游戏与娱乐**")
+                st.write("""
+                - **3A级游戏**：光线追踪、高分辨率纹理及 DLSS 4.0 帧率提升。
+                - **VR/AR设备**：双眼独立渲染高分辨率画面，保持 90+ FPS 避免眩晕。
+                """)
+            with col_b:
+                st.markdown("**🎨 专业创作与设计**")
+                st.write("""
+                - **3D建模/动画**：Blender/Maya 实时预览材质与光照。
+                - **建筑可视化**：Revit/AutoCAD 在 VR 环境中“走进”模型评估设计。
+                """)
+
+        with render_tab2:
+            col_c, col_d = st.columns(2)
+            with col_c:
+                st.markdown("**📊 科学研究与计算**")
+                st.write("""
+                - **数据可视化**：将流场、电磁场等复杂数据转化为直观 3D 图像。
+                - **生物医学**：加速基因测序、蛋白质折叠模拟及医学影像重建。
+                """)
+            with col_d:
+                st.markdown("**☁️ 新兴趋势**")
+                st.write("""
+                - **云渲染协作**：NVIDIA Omniverse 支持全球团队实时共享虚拟环境。
+                - **AI 辅助渲染**：利用 AI 预测视角变化，提前加载纹理。
+                """)
+
+        with render_tab3:
+            col_e, col_f = st.columns(2)
+            with col_e:
+                st.markdown("**🧠 人工智能应用**")
+                st.write("""
+                - **模型训练**：加速大语言模型预训练和 Stable Diffusion 文生图。
+                - **生成式内容**：扩散模型依赖 GPU 处理海量计算，生成逼真视轨。
+                """)
+            with col_f:
+                st.markdown("**🏭 工程与工业**")
+                st.write("""
+                - **数字孪生**：产品原型模拟，优化设计以减少物理测试。
+                - **自动驾驶仿真**：高精度地图渲染与传感器融合可视化。
+                """)
 
     st.divider()
 
