@@ -37,7 +37,7 @@ col_input1, col_input2 = st.columns(2)
 with col_input1:
     major_type = st.selectbox("选择你的学科类别", 
         [ "文管/通用 (办公/刷课)", "传媒/艺术 (剪辑/设计)", "计算机/软件 (编程/虚拟机)", "理工科 (仿真/建模/渲染)"])
-    budget = st.slider("你的预算上限 (最终到手价)", 4000, 14000, 6000)
+    budget = st.slider("你的预算上限 (最终到手价)", 4000, 16000, 6000)
 
 with col_input2:
     st.write("---") # 简单的视觉对齐
