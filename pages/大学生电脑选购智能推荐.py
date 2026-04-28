@@ -91,6 +91,9 @@ for brand, models in MODEL_DB.items():
         
         is_creative_high_spec = (ram_val >= 32 and is_2k_plus and (is_high_cpu or is_strong_igpu))
 
+        # 新增：判断 CPU 是否带有 "Core" 字段（指新型酷睿系列 Core 5/7）
+        is_core_cpu = "Core" in cpu
+
         # --- 3. 匹配逻辑判定 ---
         is_match = True
         
@@ -101,6 +104,9 @@ for brand, models in MODEL_DB.items():
         # 传媒/艺术 (剪辑/设计) 专项过滤
         elif "传媒" in major_type:
             if not is_2k_plus:
+                is_match = False
+            # 2. 排除所有带 "Core" 字段的 CPU
+            elif is_core_cpu:
                 is_match = False
             elif not (is_gaming_perf or is_creative_high_spec):
                 is_match = False
