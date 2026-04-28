@@ -115,7 +115,10 @@ for brand, models in MODEL_DB.items():
             is_match = False
             
         # 便携性过滤
-        if portability_first and any(kw in name for kw in ["拯救者", "精灵", "极光"]):
+        if portability_first and any(kw in name for kw in [
+            "拯救者", "精灵", "极光X", "极光", "蛟龙", "潮玩版", "耀世", "旷世",
+            "苍龙"
+            ]):
             is_match = False
 
         if is_match:
