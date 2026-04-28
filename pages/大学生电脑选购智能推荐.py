@@ -128,7 +128,7 @@ for brand, models in MODEL_DB.items():
                 "原价": price,
                 "国补状态": "✅ 参加" if has_subsidy else "❌ 不参加", # 新增展示列
                 "最终到手价": final_price,
-                "核心配置": f"{cpu} | {ram} | {gpu}",
+                "核心配置": f"{cpu} | {ram} | {gpu} | {ssd}",
                 "屏幕": f"{screen} / {refresh}"
             })
             
