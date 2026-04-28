@@ -103,31 +103,71 @@
             "specs": ["Ultra 5 125H", "16G", "512G", "Intel(R) Arc(TM) Graphics", "1080P FHD", "60Hz"]
         }
     },
-    "戴尔 (DELL)": {
-        "Dell 15 D15260": {
-            "price": 8899,
+        "机械革命 (MECHREVO)": {
+        "苍龙 16 Ultra (R9-9955HX3D/1T)": {
+            "price": 15999,
             "status": true,
-            "specs": ["Ultra 5 225H", "16G", "512G", "Intel(R) Graphics", "1080P FHD", "120Hz"]
+            "specs": ["AMD R9 9955HX3D", "32GB", "1TB", "RTX 5070 Ti 12G", "2.5K", "240Hz"]
         },
-        "Inspiron 14 Plus 7440F-1605L": {
-            "price": 4899,
+        "蛟龙 16 Pro (R7-8840HX/512G)": {
+            "price": 7099,
             "status": true,
-            "specs": ["Core 5 210H", "16G", "512G", "Intel(R) Graphics", "1920x1200", "60Hz"]
+            "specs": ["AMD R7 8840HX", "16GB", "512GB", "RTX 5050 6G", "2.5K", "165Hz"]
         },
-        "Inspiron 14 Plus 7440F-4609L（暂无国补）": {
-            "price": 7499,
+        "耀世 18 Pro (i7-14650HX/1T)": {
+            "price": 10799,
+            "status": true,
+            "specs": ["i7-14650HX", "16GB", "1TB", "RTX 5060 8G", "2.5K", "240Hz"]
+        },
+        "星耀 14 (Ryzen AI 9 H 365/1T)": {
+            "price": 6999,
+            "status": true,
+            "specs": ["AMD Ryzen AI 9 H 365", "32GB", "1TB", "Radeon 880M Graphics", "2.8K OLED", "120Hz"]
+        },
+        "星耀 14 (R7 H 255/1T)": {
+            "price": 5999,
+            "status": true,
+            "specs": ["AMD R7 H 255", "32GB", "1TB", "Radeon 780M Graphics", "2.8K OLED", "120Hz"]
+        },
+        "无界 14 (Ultra 5 226V/1T)": {
+            "price": 6999,
+            "status": true,
+            "specs": ["Intel Ultra 5 226V", "16GB", "1TB", "Intel Arc 130V Graphics", "2.8K", "120Hz"]
+        },
+        "旷世 X (i7-14650HX/1T)": {
+            "price": 8699,
+            "status": true,
+            "specs": ["i7-14650HX", "16GB", "1TB", "RTX 5060 8G", "2.5K", "240Hz"]
+        },
+        "无界 14X 锐龙版 (R7 H 255/512G)": {
+            "price": 4499,
+            "status": true,
+            "specs": ["AMD Ryzen 7 H 255", "16GB", "512GB", "Radeon 780M Graphics", "FHD", "100% sRGB"]
+        },
+        "极光X 潮玩版 (i7-14650HX/1T)": {
+            "price": 9099,
+            "status": true,
+            "specs": ["i7-14650HX", "16GB", "1TB", "RTX 5060", "2.5K", "300Hz"]
+        },
+        "蛟龙 15K (R7-7735H/1T)": {
+            "price": 6299,
+            "status": true,
+            "specs": ["R7-7735H", "16GB", "1TB", "RTX 4050", "1080P", "165Hz"]
+        },
+        "蛟龙 15K (R7-7445H/512G)": {
+            "price": 5099,
+            "status": true,
+            "specs": ["R7-7445H", "16GB", "512GB", "RTX 3050", "1080P", "144Hz"]
+        },
+        "无界 15X PRO (R7 H 255/1T)": {
+            "price": 5600,
             "status": false,
-            "specs": ["Core 5 210H", "32G", "1TB", "Intel(R) Graphics", "2.5K (2560x1600)", "120Hz"]
+            "specs": ["R7 H 255", "32GB", "1TB", "AMD Radeon 780M Graphics", "2.5K", "120Hz"]
         },
-        "Inspiron 16 7640A-1605L": {
-            "price": 4599,
+        "无界 14 IL (U5-226V/1T)": {
+            "price": 6999,
             "status": true,
-            "specs": ["i5-12450H", "16G", "512G", "Intel(R) UHD Graphics", "1920x1200", "60Hz"]
-        },
-        "Inspiron 14 Plus 7440-1608L": {
-            "price": 7299,
-            "status": true,
-            "specs": ["Ultra 5 125H", "16G", "1TB", "Intel(R) Arc(TM) Graphics", "2.8K (2880x1800)", "90Hz"]
+            "specs": ["U5-226V", "16GB", "1TB", "Intel Arc 130V Graphics", "2.8K", "120Hz"]
         }
     },
     "自定义": {
